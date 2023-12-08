@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+{% block content %}
+    </head>
+    <body>
+        
+        <h1>Lista rezerwacji</h1>
+        <table id = "customers">
+            <tr>
+              <th>Nazwa Sali</th>
+              <th>Wydarzenie</th>
+              <th>Rozpoczęcie rezerwacji</th>  
+              <th>Koniec rezerwacji</th>  
+            </tr>
+            {% for rez_ref, rez in reservations %}
+                <tr>
+                <td>{{ rez_ref.sala.nazwa }}</td>
+                <td>{{ rez.referencja_wydarzenie.nazwa }}</td>
+                <td>{{ rez.referencja_wydarzenie.data_rozpoczecia }}</td>
+                <td>{{ rez.referencja_wydarzenie.data_zakonczenia }}</td>
+                </tr>
+            {% endfor %}            
+        </table>
+        
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+    </body>
+{% endblock %}

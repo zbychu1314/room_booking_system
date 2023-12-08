@@ -1,0 +1,22 @@
+{% extends "base.html" %} 
+
+{% block content %}
+    <body>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <h1>Lista Sal</h1>
+        <ul>
+            {% for room in rooms %}
+            <li><a class="nav-link active" href="{% url 'rooms:details' room.id  %}">{{ room.nazwa }}</a></li>
+            <img src="{{ room.zdjecie.url}}" alt="{{ room.nazwa }}"img style="max-width: 300px; max-height: 300px">
+            <br></br>    
+            {% endfor %}
+        </ul>
+    </body>
+{% endblock %}
+
